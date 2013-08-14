@@ -9,3 +9,12 @@ class Study(object):
     
     def __init__(self, ):
         '''constructor for Study class'''
+
+    def add_experiment(self, )
+
+
+
+ 
+
+
+
