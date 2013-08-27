@@ -15,5 +15,5 @@ class Run(object):
     @property
     def is_local(self):
         ''' returns true if file is locally stored '''
-        True if self.path == None else False 
+        return False if self.path == None else True
 
