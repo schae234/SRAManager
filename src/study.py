@@ -19,6 +19,9 @@ class Study(object):
         self.title = title
         self.submitter = submitter
         self.experiments = experiments
+    
+    def __len__(self):
+        return len(self.experiments)
 
     def add_experiment(self,experiment):
         ''' safely add an experiment instance to the study'''
@@ -29,9 +32,4 @@ class Study(object):
         else:
             self.experiments.add(experiment)
         
-
-
- 
-
-
 

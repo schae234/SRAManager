@@ -16,4 +16,3 @@ class Reference(object):
             os.access(path, os.R_OK)
         except IOError as e:
            raise ReferenceError("Cannot open reference file: {}".format(path)) 
-

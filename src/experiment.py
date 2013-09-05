@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 # Copyright 2013 Rob Schaefer <schae234@gmail.com>
 
+from sample import Sample
+
 class Experiment(object):
     ''' An experiment holds meta data on Runs from a 
         certain Experiment. It can hold important
@@ -15,22 +17,27 @@ class Experiment(object):
                 - SRR445655
 
 '''
+    samples = set()
 
     def __init__(self, accession, title=None, instrument=None, sample=None, runs=set()):
         ''' constructor for Experiment class '''
         self.accession = accession
         self.title = title
         self.instrument = instrument
-        self.runs = runs 
-        self.sample = sample # sample is stored as accession number
-
+        self.runs = runs
        
     def add_run(self, run):
         ''' add a run to the experiment '''
         try:
             assert isinstance(run, Run)
         except AssertionError as e:
-            raise ExperimentError("Attempted to add non run unstance")
+            raise ExperimentError("Attempted to add non run instance")
         else:
             self.runs.add(run) 
-    
+
+    def add_sample(self,sample):
+        ''' experiments can share samples '''
+        try: 
+            assert isinstace(sample, Sample)
+        except AssertionError as e:
+            raise ExperimentError("Attempted to add non sample instance")
