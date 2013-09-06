@@ -3,6 +3,5 @@
 from camoco import *
 
 # Load our Camoco instance
-c = Camoco()
 
-
+c = Camoco(title="Root Network")

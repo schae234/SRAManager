@@ -17,11 +17,11 @@ class CamocoError(Exception):
 class Camoco(object):
     '''Camoco is a SRA project management system'''
 
-    def __init__(self, working_dir="~/.camoco",title=None,accession=None):
+    def __init__(self, working_dir="~/.camoco", title=None, accession=None):
         '''constructor for camoco class'''
         self.wdir = os.path.expanduser(working_dir)
-        self.title = ""
-        self.accession = ""
+        self.title = title
+        self.accession = accession
         self.options = dict()
         self.references = set()
         self.studies    = set()
@@ -37,17 +37,14 @@ class Camoco(object):
         self.oldwd = os.getcwd()
         os.chdir(self.wdir)
         # try loading saved Camoco projects
-        if os.access(self.wdir+"/camoco.p",os.R_OK):
+        save = "{}/{}.cam".format(self.wdir,self.title)
+        if os.access(save,os.R_OK) and os.stat(save).st_size > 0:
             self.load()
 
     def __str__(self):
        ''' String representation of class '''
        return '''Camoco {}'''.format(self.title)
 
-    def __repr__(self):
-        ''' Debug representation of class '''
-        return "bc"
-        
     def add_study(self, study):
         '''Add a new study to the class'''
         try:
@@ -111,11 +108,14 @@ class Camoco(object):
         
     def save(self, path=None):
         ''' this saves the camoco to the working directory '''
-        with open("{}/{}.camoco".format(self.wdir,self.title),'wb') as f:
-            pickle.dump(self, f)
+        with open("{}/{}.cam".format(self.wdir,self.title),'wb') as f:
+            try:
+                pickle.dump(self, f)
+            except pickle.PickleError as e:
+                print("Failed to pickle: {}".format(e))
 
     def load(self,path=None):
-        with open(self.wdir+"/camoco.p",'rb') as f:
+        with open("{}/{}.cam".format(self.wdir,self.title),'rb') as f:
             p = pickle.load(f)
             self.__dict__.update(p.__dict__)
 
