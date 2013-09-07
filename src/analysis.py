@@ -62,8 +62,8 @@ class SRAMappingNode(CommandNode):
         #------------------------------------------
         fastq_dump = AtomicCmdBuilder(['fastq-dump', '%(IN_SRA)s'],
                             IN_SRA = infile,
-                            TEMP_OUT_MATE1 = '',
-                            TEMP_OUT_MATE2 = '',
+                            TEMP_OUT_MATE1 = sra_infile.replace('.sra',''),
+                            TEMP_OUT_MATE2 = sra_infile.replace('.sra',''),
                     ) 
         fastq_dump.set_option('')
         #------------------------------------------

@@ -1,0 +1,303 @@
+Camoco:
+    Title: Root Network
+    Accession: "TDB"
+    Options:
+    # Options for the pipeline
+        BaseDir: ~/.camoco
+        TempDir: ~/.camoco/Temp
+    References:
+    # Fasta Sequence References
+        - Label: "Maize B73 Genome Build 5a"
+          Path: 000_References/ZmB73_5a_RefGen_v2.fa
+    Samples:
+          - Accession: SRS300579
+            Title: Tzi8
+          - Accession: SRS300578
+            Title: Tx303
+          - Accession: SRS300577
+            Title: P39
+          - Accession: SRS300576
+            Title: Oh7B
+          - Accession: SRS300575
+            Title: Oh43
+          - Accession: SRS300574
+            Title: NC358
+          - Accession: SRS300573
+            Title: NC350
+          - Accession: SRS300573
+            Title: NC350
+          - Accession: SRS300572
+            Title: Ms71
+          - Accession: SRS300568
+            Title: Mo17
+          - Accession: SRS300566
+            Title: M37W
+          - Accession: SRS300564
+            Title: M162W
+          - Accession: SRS300564
+            Title: M162W
+          - Accession: SRS300561
+            Title: Ky21
+          - Accession: SRS300559
+            Title: Ki3
+          - Accession: SRS300558
+            Title: Ki11
+          - Accession: SRS300557
+            Title: IL14H
+          - Accession: SRS300556
+            Title: Hp301
+          - Accession: SRS300551
+            Title: CML69
+          - Accession: SRS300550
+            Title: CML52
+          - Accession: SRS300549
+            Title: CML333
+          - Accession: SRS300548
+            Title: CML322
+          - Accession: SRS381462
+            Title: Mo17/B73
+          - Accession: SRS381460
+            Title: B73/Mo17
+          - Accession: SRP017685
+            Title: Mo17
+          - Accession: SRS381456
+            Title: B73
+          - Accession: SRS363933
+            Title: M-P2
+          - Accession: SRS363932
+            Title: M-P1
+          - Accession: SRS363931
+            Title: M-CK
+          - Accession: SRS363930
+            Title: H-P2
+          - Accession: SRS363928
+            Title: H-CK
+          - Accession: SRS363929
+            Title: H-P1
+    # A Set of experiments, overall goal
+    Studies:
+        # Consistent set of lab operations on input material (samples) w/ expected results
+      - Accession: SRP011480
+        Title: "Zeanome"
+        Submitter: Iowa State Univ.
+        Experiments:
+           - Title: "Zea mays ssp. mays L. Tzi8 seedling root RNA-Seq"
+             Accession: SRX129813
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300579
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445655
+           - Title: "Zea mays ssp. mays L. Tx303 seedling root RNA-Seq"
+             Accession: SRX129809
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300578
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445651
+           - Title: "Zea mays ssp. mays L. P39 seedling root RNA-Seq"
+             Accession: SRX129805
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300577
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445647
+           - Title: "Zea mays ssp. mays L. Oh7B seedling root RNA-Seq"
+             Accession: SRX129801
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300576
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445643
+           - Title: "Zea mays ssp. mays L. Oh43 seedling root RNA-Seq"
+             Accession: SRX129797
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300575
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445639
+           - Title: "Zea mays ssp. mays L. NC358 seedling root RNA-Seq"
+             Accession: SRX129793
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300574
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445632
+           - Title: "Zea mays ssp. mays L. NC350 seedling root RNA-Seq"
+             Accession: SRX129789
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300573
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445627
+           - Title: "Zea mays ssp. mays L. Ms71 seedling root RNA-Seq"
+             Accession: SRX129786
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300572
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445624
+           - Title: "Zea mays ssp. mays L. Mo17 seedling root RNA-Seq"
+             Accession: SRX129776
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300568
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445616
+           - Title: "Zea mays ssp. mays L. M37W seedling root RNA-Seq"
+             Accession: SRX129771
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300566
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445583
+           - Title: "Zea mays ssp. mays L. M162W seedling root RNA-Seq"
+             Accession: SRX129767
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300564
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445531
+           - Title: "Zea mays ssp. mays L. Ky21 seedling root RNA-Seq"
+             Accession: SRX129760
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300561
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445452
+           - Title: "Zea mays ssp. mays L. Ki3 seedling root RNA-Seq"
+             Accession: SRX129755
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300559
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445434
+           - Title: "Zea mays ssp. mays L. Ki11 seedling root RNA-Seq"
+             Accession: SRX129751
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300558
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445429
+           - Title: " Zea mays ssp. mays L. IL14H seedling root RNA-Seq"
+             Accession: SRX129747
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300557
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445425
+           - Title: "Zea mays ssp. mays L. Hp301 seedling root RNA-Seq"
+             Accession: SRX129743
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300556
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445421
+           - Title: "Zea mays ssp. mays L. CML69 seedling root RNA-Seq"
+             Accession: SRX129735
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300551
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445417
+           - Title: "Zea mays ssp. mays L. CML52 seedling root RNA-Seq"
+             Accession: SRX129731
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300550
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445413
+           - Title: "Zea mays ssp. mays L. CML333 seedling root RNA-Seq"
+             Accession: SRX129727
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300549
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445409
+           - Title: "Zea mays ssp. mays L. CML322 seedling root RNA-Seq"
+             Accession: SRX129723
+             Instrument: Illumina HiSeq 2000
+             Sample: SRS300548
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR445405
+        # Consistent set of lab operations on input material (samples) w/ expected results
+      - Title: "GSE43142: Conservation and Divergence of Transcriptomic and Epigenomic Variations in Maize Hybrids"
+        Submitter: GEO
+        Accession: SRP017685
+        Experiments:
+           - Title: "GSM1057293: mRNA-seq_Mo17/B73_root; Zea mays; RNA-Seq"
+             Accession: SRX212604
+             Instrument: Illumina Genome Analyzer
+             Sample: SRS381462
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR640270
+           - Title: "GSM1057291: mRNA-seq_B73/Mo17_root; Zea mays; RNA-Seq"
+             Accession: SRX212602
+             Instrument: Illumina Genome Analyzer
+             Sample: SRS381460
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR640268
+           - Title: "GSM1057289: mRNA-seq_Mo17_root; Zea mays; RNA-Seq"
+             Accession: SRX212600
+             Instrument: Illumina Genome Analyzer
+             Sample: SRP017685
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR640266
+           - Title: "GSM1057287: mRNA-seq_B73_root; Zea mays; RNA-Seq"
+             Accession: SRX212598
+             Instrument: Illumina Genome Analyzer
+             Sample: SRS381456
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR640264
+        # Consistent set of lab operations on input material (samples) w/ expected results
+      - Title: "GSE40952: Digital gene expression analysis of early root infection of Sporisorium reilianum f.sp.zeae in maize based on susceptible and resistant lines"
+        Submitter: None
+        Accession: SRP017685
+        Experiments:
+           - Title: "GSM1005511: M-P2; Zea mays; RNA-Seq"
+             Accession: SRX187574
+             Instrument: Illumina Genome Analyzer
+             Sample: SRS363933
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR572427
+           - Title: "GSM1005510: M-P1; Zea mays; RNA-Seq"
+             Accession: SRX187573
+             Instrument: Illumina Genome Analyzer
+             Sample: SRS363932
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR572426
+           - Title: "GSM1005509: M-CK; Zea mays; RNA-Seq"
+             Accession: SRX187572
+             Instrument: Illumina Genome Analyzer
+             Sample: SRS363931
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR572425
+           - Title: "GSM1005508: H-P2; Zea mays; RNA-Seq"
+             Accession: SRX187571
+             Instrument: Illumina Genome Analyzer
+             Sample: SRS363930
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR572424
+           - Title: "GSM1005506: H-CK; Zea mays; RNA-Seq"
+             Accession: SRX187569
+             Instrument: Illumina Genome Analyzer
+             Sample: SRS363928
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR572422
+           - Title: "GSM1005507: H-P1; Zea mays; RNA-Seq"
+             Accession: SRX187570
+             Instrument: Illumina Genome Analyzer
+             Sample: SRS363929
+             Runs:
+                - Path: "/project/csbio/schaefer/Documents/Root/SRA/"
+                  Accession: SRR572423

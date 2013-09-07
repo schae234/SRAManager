@@ -4,4 +4,7 @@ from camoco import *
 
 # Load our Camoco instance
 
-c = Camoco(title="Root Network")
+e = Camoco(title="E.Coli_Test")
+
+
+
