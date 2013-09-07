@@ -1,0 +1,24 @@
+Camoco:
+    Title: Ecoli Test
+    Accession: "TBD"
+    Options:
+        BaseDir: ~/.camoco
+        TemoDir: ~/.camoco/Temp
+    References:
+        - Label: "EColiIAI39 Complete Genome"
+          Path: "~/Codes/root_pipeline/Camoco/tests/Ecoli_IAI39.fasta"
+    Samples:
+        - Accession: SRS474110
+          Title: Escherichia coli
+    Studies:
+        - Accession: SRP017869
+          Title: "Quantitative Different Analysis of antimicrobial peptide LL37 expressed in E.coli Top 10"
+          Submitter: "GEO Series accession: GSE43408"
+          Experiments:
+            - Accession: SRX340777
+              Title: "GSM1217968: pHerd30T-LL37 induced+aerobic; Escherichia coli; RNA-Seq"
+              Instrument : "Illumina HiSeq 2000"
+              Sample: SRS474110
+              Runs: 
+                - Accession: SRR958659
+                  Path: "~/Codes/root_pipeline/Camoco/tests/SRA/SRP017869/SRX340777/SRR958659/SRR958659.sra"
