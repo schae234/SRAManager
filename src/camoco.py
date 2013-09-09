@@ -10,6 +10,7 @@ from experiment import Experiment
 from sample import Sample
 from run import Run
 import pickle as pickle
+import itertools
 
 class CamocoError(Exception):
     pass
@@ -40,6 +41,20 @@ class Camoco(object):
         save = "{}/{}.cam".format(self.wdir,self.title)
         if os.access(save,os.R_OK) and os.stat(save).st_size > 0:
             self.load()
+
+    def ref_paths(self):
+        return [r.path for r in self.references]
+
+    def sra_paths(self):
+       return [r.path for r in itertools.chain(
+                *list(itertools.chain(
+                        map( lambda e: e.runs, 
+                            list(itertools.chain(
+                                *map(lambda s: s.experiments, self.studies)
+                            ))
+                        )
+                 ))
+       )]
 
     def __str__(self):
        ''' String representation of class '''

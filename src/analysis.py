@@ -2,6 +2,7 @@
 
 import camoco as camoco
 import pypeline as pypeline
+import os
 
 from pypeline.node import Node, CommandNode, MetaNode
 from pypeline.atomiccmd.command import AtomicCmd
@@ -26,7 +27,7 @@ class Analysis(object):
         ''' constructor for analysis '''
         self.title = title
         self.nodes = []
-        self.pypeline = pypeline.Pypeline() 
+        self.pypeline = pypeline.Pypeline(config={'temp' : "/tmp"}) 
         self.camoco = camoco_inst
   
     def run(self):
@@ -41,45 +42,67 @@ class Analysis(object):
 class MappingAnalysis(Analysis):
 
     def __init__(self, camoco_inst, title):
-        super(Analysis,self).__init__()
+        super().__init__(camoco_inst,title)
         # for each of the SRA, start a mapping node
         self.nodes = [
-            
+            SRAMappingNode.customize(reference=ref, sra_infile=sra)
+            for sra in self.camoco.sra_paths() for ref in self.camoco.ref_paths()
         ] 
+        # Build nodes
+        self.nodes = [
+            n.build_node() for n in self.nodes
+        ]
+        
 
 
     def run(self):
-        self.pypeline.add_nodes(self.nodes)
+        self.pypeline.add_nodes(
+            MetaNode(
+                description  = "Mapping Pipeline",
+                dependencies = self.nodes
+            )
+        )
         self.pypeline.run()
 
 
 class SRAMappingNode(CommandNode):
     @create_customizable_cli_parameters
-    def customize(self, reference, sra_infile, bam_outfile, ):
+    def customize(self, reference='', sra_infile='', wdir = '/tmp', dependencies=()):
         ''' Customize CLI parameters for Mapping commands '''
         #------------------------------------------
         # Dump SRA file into fastq format
         #------------------------------------------
         fastq_dump = AtomicCmdBuilder(['fastq-dump', '%(IN_SRA)s'],
-                            IN_SRA = infile,
-                            TEMP_OUT_MATE1 = sra_infile.replace('.sra',''),
-                            TEMP_OUT_MATE2 = sra_infile.replace('.sra',''),
+                            IN_SRA = os.path.expanduser(sra_infile),
+                            OUT_FASTQ1 = os.path.basename(sra_infile).replace('.sra','_1.fastq.gz'),
+                            OUT_FASTQ2 = os.path.basename(sra_infile).replace('.sra','_2.fastq.gz')
                     ) 
-        fastq_dump.set_option('')
+        fastq_dump.set_option('--split-files')
+        fastq_dump.set_option('--gzip')
+        fastq_dump.set_option('-O',"/tmp")
         #------------------------------------------
         # Remove Adapters
         #------------------------------------------
         adapter_rm = AtomicCmdBuilder(['AdapterRemoval'],
-                        TEMP_IN_READS_1 = '',
-                        TEMP_IN_READS_2 = '',
-                        TEMP_OUT_BASENAME = ''; 
-                        TEMP_OUT_LINK_PAIR1 = '',
-                        TEMP_OUT_LINK_PAIR2 = '',
-                        TEMP_OUT_LINK_ALN = '',
-                        TEMP_OUT_LINK_ALN_TRUNC = '',
-                        TEMP_OUT_LINK_UNALN = '',
-                        TEMP_OUT_LINK_DISC = '',
+                        TEMP_IN_READS_1 = 
+                            os.path.join(
+                                wdir,
+                                os.path.basename(sra_infile).replace(".sra",'') + "_1.fastq.gz"
+                        ),
+                        TEMP_IN_READS_2 = 
+                            os.path.join(
+                                wdir,
+                                os.path.basename(sra_infile).replace(".sra",'') + "_2.fastq.gz"
+                        ),
+                        TEMP_OUT_BASENAME = 'adapter_rm', 
+                        TEMP_OUT_LINK_PAIR1 = 'pair_1',
+                        TEMP_OUT_LINK_PAIR2 = 'pair_2',
+                        TEMP_OUT_LINK_ALN = 'aligned',
+                        TEMP_OUT_LINK_ALN_TRUNC = 'truncated',
+                        TEMP_OUT_LINK_UNALN = 'unaligned',
+                        TEMP_OUT_LINK_DISC = 'discarded',
                     )
+        remove_temp_fastq = AtomicCmdBuilder(['rm'])
         # Allow 1/3 mismatches in the aligned region
         adapter_rm.set_option("--mm", 3, fixed = False)
         # Minimum length of trimmed reads
@@ -108,15 +131,15 @@ class SRAMappingNode(CommandNode):
 
         # Return the commands
         return {
-            "fastq_dump" = fastq_dump,
-            "adapter_rm" = adapter_rm,
+            'commands' : {
+                'fastq_dump' : fastq_dump,
+                'adapter_rm' : adapter_rm,
+            }
         }
-
-    @use_customizable_cli_parameters:
+    @use_customizable_cli_parameters
     def __init__(self, parameters):
-        commands = [parameters.commands[k].finalize() for k in ("fastq_dump","adapter_rm")]
+        commands = [parameters.commands[cmd].finalize() for cmd in ('fastq_dump',)]
         description = "<Mapping Pipeline>"
-
         CommandNode.__init__(self,
                              description  = description,
                              command      = ParallelCmds(commands),
