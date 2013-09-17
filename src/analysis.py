@@ -78,8 +78,6 @@ class SRAMappingNode(CommandNode):
                             OUT_FASTQ2 = os.path.basename(sra_infile).replace('.sra','_2.fastq.gz')
                     ) 
         fastq_dump.set_option('--split-files')
-        fastq_dump.set_option('--gzip')
-        fastq_dump.set_option('-O',"/tmp")
         #------------------------------------------
         # Remove Adapters
         #------------------------------------------
@@ -87,14 +85,14 @@ class SRAMappingNode(CommandNode):
                         TEMP_IN_READS_1 = 
                             os.path.join(
                                 wdir,
-                                os.path.basename(sra_infile).replace(".sra",'') + "_1.fastq.gz"
+                                os.path.basename(sra_infile).replace(".sra",'') + "_1.fastq"
                         ),
                         TEMP_IN_READS_2 = 
                             os.path.join(
                                 wdir,
-                                os.path.basename(sra_infile).replace(".sra",'') + "_2.fastq.gz"
+                                os.path.basename(sra_infile).replace(".sra",'') + "_2.fastq"
                         ),
-                        TEMP_OUT_BASENAME = 'adapter_rm', 
+                        TEMP_OUT_BASENAME = os.path.basename(sra_infile), 
                         TEMP_OUT_LINK_PAIR1 = 'pair_1',
                         TEMP_OUT_LINK_PAIR2 = 'pair_2',
                         TEMP_OUT_LINK_ALN = 'aligned',
@@ -102,7 +100,6 @@ class SRAMappingNode(CommandNode):
                         TEMP_OUT_LINK_UNALN = 'unaligned',
                         TEMP_OUT_LINK_DISC = 'discarded',
                     )
-        remove_temp_fastq = AtomicCmdBuilder(['rm'])
         # Allow 1/3 mismatches in the aligned region
         adapter_rm.set_option("--mm", 3, fixed = False)
         # Minimum length of trimmed reads
