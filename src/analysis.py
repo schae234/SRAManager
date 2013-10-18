@@ -14,14 +14,14 @@ from pypeline.atomiccmd.builder import \
      apply_options
 
 class Analysis(object):
-    ''' This class implements a analyis done on a camoco object
+    ''' 
+        This class implements a analyis done on a camoco object
         Each instance of the class will be a different type of analysis
         which takes in a camoco instance as input and runs the actual
         analysis as implemented by the pypeline class. This makes
         the approach to running and extending different pypeline
         instances universal and easily extensible, especially in 
-        relation to the short read archive.
-    '''
+        relation to the short read archive.'''
 
     def __init__(self, camoco_inst, title=""):
         ''' constructor for analysis '''
@@ -53,7 +53,6 @@ class MappingAnalysis(Analysis):
             n.build_node() for n in self.nodes
         ]
         
-
 
     def run(self):
         self.pypeline.add_nodes(
